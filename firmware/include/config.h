@@ -1,0 +1,49 @@
+#ifndef VS_CONFIG_H
+#define VS_CONFIG_H
+
+#include <stdint.h>
+
+#define VS_CHANNEL_COUNT 3
+
+#define VS_SAMPLE_MS 10
+#define VS_EVAL_MS 100
+#define VS_STARTUP_MS 2000
+#define VS_SAMPLE_COUNT 16
+#define VS_EMA_DIV 4
+
+#define VS_TARGET_DV 2400
+#define VS_MIN_DV 2050
+#define VS_MAX_DV 2550
+#define VS_MAX_RIPPLE_DV 20
+#define VS_SWITCH_MARGIN_DV 30
+#define VS_CONFIRM_EVALS 4
+
+#define VS_CAL_OFFSET_R 10
+#define VS_CAL_OFFSET_Y 10
+#define VS_CAL_OFFSET_B 10
+
+#define VS_CAL_SPAN_R_PER_100V 196
+#define VS_CAL_SPAN_Y_PER_100V 196
+#define VS_CAL_SPAN_B_PER_100V 196
+
+#define VS_SEL_POS_R 0
+#define VS_SEL_POS_Y 1
+#define VS_SEL_POS_B 2
+#define VS_SEL_POS_OFF 3
+#define VS_SEL_POS_COUNT 4
+#define VS_BOOT_POSITION VS_SEL_POS_OFF
+
+#define VS_HALF_STEPS_PER_POS 64
+#define VS_STEP_INTERVAL_MS 2
+#define VS_STEP_HOLD_POWER 1
+
+#define VS_STEPPER_PORT PORTB
+#define VS_STEPPER_DDR DDRB
+#define VS_STEPPER_MASK 0x0FU
+
+#define VS_LED_PORT PORTB
+#define VS_LED_DDR DDRB
+#define VS_LED_BIT 5
+#define VS_LED_ACTIVE_LOW 1
+
+#endif

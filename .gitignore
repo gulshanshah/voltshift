@@ -1,0 +1,28 @@
+# KiCad
+*-backups/
+_autosave-*
+*.lck
+*.kicad_prl
+fp-info-cache
+*.bak
+*.bck
+*.kicad_sch-bak
+~*.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# PlatformIO
+.pio/
+
+# Excluded from the repository
+generator/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
