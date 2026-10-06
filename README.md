@@ -14,7 +14,6 @@ switch onto it with a stepper motor — or to OFF when no line is safe.
 | --- | --- |
 | `pcb/` | KiCad 9 project — `voltshift.kicad_pro`, schematic, board and netlist |
 | `firmware/` | ATmega328P firmware (bare-metal C, PlatformIO) |
-| `generator/` | Python sources that generate the schematic and the routed PCB |
 | `media/` | Board renders, layer plots, schematic SVG and PDF |
 | `docs/` | Schematic PDF and the ERC report |
 
@@ -92,30 +91,19 @@ Calibration is per-channel in `include/config.h` — `VS_CAL_OFFSET_*` and `VS_C
 
 ## Working on the design
 
-The KiCad files in `pcb/` are generated from `generator/circuit.py`, which is
-the single source of truth: components, footprints, nets and schematic texts
-all live there.
+Open `pcb/voltshift.kicad_pro` in KiCad 9 and edit the schematic and the board
+directly. Run the Electrical Rules Checker after any change — the last check
+came back clean (0 errors, 0 warnings).
 
-```
-generator/circuit.py     # netlist + placement source of truth
-generator/make_sch.py    # writes pcb/voltshift.kicad_sch
-generator/make_pcb.py    # writes pcb/voltshift.kicad_pcb (placement + router)
-```
-
-- Open the design in **KiCad 9**: `pcb/voltshift.kicad_pro`.
-- Regenerate the PCB with KiCad's bundled Python:
-  `bin\python.exe generator\make_pcb.py`
-- `make_sch.py` reads the stock KiCad symbol libraries and additionally
-  imports a small `symdump.py` s-expression helper that lives beside it.
-
-If you edit the circuit, change `circuit.py` and regenerate rather than editing
-the `.kicad_sch` / `.kicad_pcb` by hand — otherwise the next generation will
-overwrite your work.
+Keep the two domains apart while editing: mains circuitry stays left of the
+isolation gap, the ground pour belongs to the logic side only, and the 6 mm
+creepage between them must survive any move. The exported schematic PDF and
+the ERC report are in `docs/`.
 
 ## Status
 
-Schematic and PCB are done and ERC-clean. Next up: fab the board, build the
-first unit, and write the firmware that picks the line.
+Schematic and PCB are done and ERC-clean, and the firmware builds for the
+ATmega328P. Next up: fab the board and build the first unit.
 
 ## License
 
